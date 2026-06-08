@@ -28,10 +28,11 @@ jobs:
     - name: Build APK with Buildozer
       run: |
         export PATH=$PATH:~/.local/bin
-        # Esto fuerza la aceptación de todas las licencias antes de empezar
-        buildozer android debug
+        # Instalamos herramientas adicionales para evitar errores de red
+        sudo apt-get install -y --no-install-recommends openjdk-17-jdk
+        # Ejecutamos con mayor paciencia
+        buildozer -v android debug
       env:
-        # Esta variable de entorno obliga a buildozer a aceptar licencias automáticamente
         BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
     - name: Upload APK
