@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Unzip project files
       run: |
@@ -19,7 +19,7 @@ jobs:
         if [ -d content ]; then cp -r content/* .; rm -rf content; fi
 
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
@@ -36,7 +36,8 @@ jobs:
         yes | buildozer android debug
 
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
+      
       with:
         name: psxbridge-apk
         path: bin/*.apk
