@@ -28,7 +28,6 @@ jobs:
     - name: Build APK with Buildozer
       run: |
         export PATH=$PATH:~/.local/bin
-        buildozer clean
         buildozer -v android debug
 
     - name: Upload APK
