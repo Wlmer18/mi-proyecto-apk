@@ -28,9 +28,12 @@ jobs:
     - name: Build APK with Buildozer
       run: |
         export PATH=$PATH:~/.local/bin
-        # Instalamos herramientas adicionales para evitar errores de red
+        # Instalamos herramientas adicionales
         sudo apt-get install -y --no-install-recommends openjdk-17-jdk
-        # Ejecutamos con mayor paciencia
+        # Forzamos la aceptación de licencias antes de compilar
+        mkdir -p ~/.android && touch ~/.android/repositories.cfg
+        yes | sdkmanager --licenses || true
+        # Ahora ejecutamos la compilación
         buildozer -v android debug
       env:
         BUILDOZER_ACCEPT_SDK_LICENSE: 1
