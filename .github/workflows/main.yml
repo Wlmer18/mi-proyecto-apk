@@ -12,7 +12,9 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # El comando 'yes y' envía automáticamente un 'y' a cualquier pregunta que haga Buildozer
+          # Damos permisos totales a la carpeta para evitar errores de escritura
+          chmod -R 777 .
+          # Ejecutamos el build forzando la respuesta 'y' para el modo root
           yes y | buildozer -v android debug
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
