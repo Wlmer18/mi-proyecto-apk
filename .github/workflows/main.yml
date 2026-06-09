@@ -6,24 +6,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build with Buildozer
-        run: |
-          pip3 install --upgrade buildozer
-          # Instalamos solo lo mínimo indispensable para Kivy
-          sudo apt-get update
-          sudo apt-get install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential
-          
-          # Esto evita que Buildozer descargue el NDK/SDK completo de nuevo si ya existe en caché
-          buildozer -v android debug
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          buildozer_version: stable
         env:
-          BUILDOZER_ACCEPT_SDK_LICENSE: 1
-          # FORZAMOS el uso de memoria controlada
-          JVM_OPTS: "-Xmx2g"
+          # Esto obliga a Buildozer a ser mucho más hablador
+          PYTHONUNBUFFERED: 1
+          # Configuramos esto para evitar errores de memoria comunes
+          JVM_OPTS: "-Xmx2048m"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: MiAppAPK
           path: bin/*.apk
+        if: always()
