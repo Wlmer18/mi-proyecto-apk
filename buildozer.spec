@@ -5,12 +5,10 @@ package.domain = org.wilmer
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 0.1
-# Quitamos flask y requests temporalmente para probar si el motor compila
 requirements = python3,kivy
 orientation = portrait
 fullscreen = 0
 
-# Configuración de Android optimizada
 android.api = 31
 android.minapi = 21
 android.sdk = 31
