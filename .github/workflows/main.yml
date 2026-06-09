@@ -15,11 +15,12 @@ jobs:
           
       - name: Build with Buildozer
         run: |
-          # Limpiamos caché antigua para evitar conflictos
+          # Borrar caché antigua para evitar conflictos
           rm -rf .buildozer
           pip3 install --user --upgrade buildozer
           pip3 install --user --upgrade cython
-          # Ejecutamos el build forzando la aceptación de licencias
+          # Ejecutar el build
           buildozer -v android debug
         env:
+          # Variable para aceptar licencias automáticamente
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
