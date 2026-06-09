@@ -5,16 +5,23 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: kivy/buildozer
     steps:
       - uses: actions/checkout@v3
 
       - name: Build with Buildozer
         run: |
+          # Instalamos dependencias necesarias para que el compilador no falle
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential
+          
+          # Limpiamos caché previo
           rm -rf .buildozer
-          # Añadimos --no-cleanup para ver si ayuda a mantener la estabilidad
-          yes y | buildozer -v android debug --no-cleanup
+          
+          # Instalamos buildozer
+          pip3 install --user --upgrade buildozer
+          
+          # Ejecutamos con --no-cleanup para que no borre nada si algo falla
+          buildozer -v android debug
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
@@ -22,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MiAppAPK
-          path: bin/*.apk 
+          path: bin/*.apk
