@@ -18,14 +18,13 @@ jobs:
           rm -rf .buildozer
           pip3 install --user --upgrade buildozer
           pip3 install --user --upgrade cython
-          # Ejecutamos buildozer y guardamos el log en un archivo
           buildozer -v android debug 2>&1 | tee build_log.txt
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
       - name: Upload log if build fails
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build_log
           path: build_log.txt
