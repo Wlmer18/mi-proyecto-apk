@@ -9,16 +9,16 @@ requirements = python3,kivy,flask,requests
 orientation = portrait
 fullscreen = 0
 
-[buildozer]
-log_level = 2
-warn_on_root = 1
-
-[app:android]
-android.api = 33
+# Configuración de Android
+android.api = 31
 android.minapi = 21
-android.sdk = 33
-android.ndk = 25b
+android.sdk = 31
+android.ndk = 23b
 android.ndk_api = 21
 android.accept_sdk_license = True
 android.archs = arm64-v8a, armeabi-v7a
 android.allow_backup = True
+
+[buildozer]
+log_level = 2
+warn_on_root = 1
