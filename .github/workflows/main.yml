@@ -13,10 +13,8 @@ jobs:
         with:
           buildozer_version: stable
         env:
-          # Esto obliga a Buildozer a ser mucho más hablador
+          # Esto es clave: limpiamos archivos residuales de intentos anteriores
           PYTHONUNBUFFERED: 1
-          # Configuramos esto para evitar errores de memoria comunes
-          JVM_OPTS: "-Xmx2048m"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
