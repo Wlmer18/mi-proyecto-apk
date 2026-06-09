@@ -26,4 +26,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MiAppAPK
-          path: bin/*.apk
+          # Buscamos en todas las carpetas, no solo en bin
+          path: |
+            *.apk
+            bin/*.apk
+            dist/*.apk
