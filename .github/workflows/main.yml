@@ -12,10 +12,9 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # Limpiamos el rastro de intentos anteriores
           rm -rf .buildozer
-          # Ejecutamos con el log nivel 2 para ver qué ocurre realmente
-          yes y | buildozer -v android debug
+          # Añadimos --no-cleanup para ver si ayuda a mantener la estabilidad
+          yes y | buildozer -v android debug --no-cleanup
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
