@@ -22,9 +22,8 @@ jobs:
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
-      - name: Upload log if build fails
-        if: failure()
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: build_log
-          path: build_log.txt
+          name: MiAppAPK
+          path: bin/*.apk
