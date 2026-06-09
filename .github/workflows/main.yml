@@ -15,8 +15,11 @@ jobs:
 
       - name: Build with Buildozer
         run: |
+          # Aseguramos limpieza total antes de empezar
+          rm -rf .buildozer
           pip3 install --user --upgrade buildozer
           pip3 install --user --upgrade cython
+          # Ejecutamos el build con más detalle
           buildozer -v android debug
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
