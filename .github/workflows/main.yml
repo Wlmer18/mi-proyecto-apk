@@ -5,23 +5,22 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: kivy/buildozer
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential
-
       - name: Build with Buildozer
         run: |
-          pip3 install --user --upgrade buildozer
-          pip3 install --user --upgrade cython
-          # Usamos -v para ver detalles y evitamos modos interactivos
-          buildozer -v android debug
+          # Limpiamos el rastro de intentos anteriores
+          rm -rf .buildozer
+          # Ejecutamos con el log nivel 2 para ver qué ocurre realmente
+          yes y | buildozer -v android debug
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
-      - name: List files if build fails
-        if: failure()
-        run: ls -R
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MiAppAPK
+          path: bin/*.apk
