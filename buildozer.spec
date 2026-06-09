@@ -9,7 +9,7 @@ requirements = python3,kivy,flask,requests
 orientation = portrait
 fullscreen = 0
 
-# Configuración centralizada bajo [app]
+# Configuración de Android optimizada
 android.api = 31
 android.minapi = 21
 android.sdk = 31
