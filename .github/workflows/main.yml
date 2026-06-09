@@ -12,9 +12,8 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # Le decimos a buildozer que ignore la advertencia de root
-          export BUILDOZER_ALLOW_ROOT=1
-          buildozer -v android debug
+          # El comando 'yes y' envía automáticamente un 'y' a cualquier pregunta que haga Buildozer
+          yes y | buildozer -v android debug
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
