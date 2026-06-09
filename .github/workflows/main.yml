@@ -12,9 +12,8 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # Damos permisos al contenedor para escribir
-          chown -R user:user .
-          # Construimos el APK
+          # El contenedor ya tiene los permisos necesarios, 
+          # solo necesitamos ejecutar el build directamente.
           buildozer -v android debug
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
