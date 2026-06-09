@@ -12,8 +12,8 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # El contenedor ya tiene los permisos necesarios, 
-          # solo necesitamos ejecutar el build directamente.
+          # Le decimos a buildozer que ignore la advertencia de root
+          export BUILDOZER_ALLOW_ROOT=1
           buildozer -v android debug
         env:
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
