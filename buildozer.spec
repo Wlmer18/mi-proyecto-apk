@@ -9,7 +9,7 @@ requirements = python3,kivy,flask,requests
 orientation = portrait
 fullscreen = 0
 
-# Configuración de Android
+# Configuración de Android (API 31 es más estable que 33 para buildozer)
 android.api = 31
 android.minapi = 21
 android.sdk = 31
