@@ -9,7 +9,7 @@ requirements = python3,kivy,flask,requests
 orientation = portrait
 fullscreen = 0
 
-# Configuración de Android (API 31 y NDK 25b son versiones estables)
+# Configuración centralizada bajo [app]
 android.api = 31
 android.minapi = 21
 android.sdk = 31
