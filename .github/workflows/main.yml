@@ -30,11 +30,8 @@ jobs:
         export PATH=$PATH:~/.local/bin
         # Instalamos herramientas adicionales
         sudo apt-get install -y --no-install-recommends openjdk-17-jdk
-        # Forzamos la aceptación de licencias antes de compilar
-        mkdir -p ~/.android && touch ~/.android/repositories.cfg
-        yes | sdkmanager --licenses || true
-        # Ahora ejecutamos la compilación
-        buildozer -v android debug
+        # Forzamos la descarga y aceptamos licencias de forma explícita
+        buildozer android debug
       env:
         BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
