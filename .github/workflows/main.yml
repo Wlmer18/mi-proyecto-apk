@@ -8,16 +8,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
+      - name: Setup Java
+        uses: actions/setup-java@v3
         with:
-          buildozer_version: stable
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Buildozer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential
+          pip3 install --upgrade buildozer
+          buildozer -v android debug
         env:
-          # Esto ayuda a que el proceso no se corte tan fácil
-          PYTHONUNBUFFERED: 1
+          BUILDOZER_ACCEPT_SDK_LICENSE: 1
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: MiAppAPK
-          path: bin/*.apk 
+          path: bin/*.apk
