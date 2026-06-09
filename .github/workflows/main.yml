@@ -11,17 +11,14 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
-          # Instalamos las herramientas de construcción esenciales
-          sudo apt-get install -y build-essential
-
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential
+          
       - name: Build with Buildozer
         run: |
           rm -rf .buildozer
           pip3 install --user --upgrade buildozer
           pip3 install --user --upgrade cython
-          # Forzamos la descarga del SDK y la aceptación de licencias
+          # Forzamos la aceptación de licencias y ejecutamos la build
           buildozer -v android debug
         env:
-          # Esta variable es la que mejor funciona para evitar el "Accept? (y/N)"
           BUILDOZER_ACCEPT_SDK_LICENSE: 1
