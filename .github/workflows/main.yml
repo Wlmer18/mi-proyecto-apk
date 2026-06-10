@@ -22,3 +22,4 @@ jobs:
           name: MiAppAPK
           path: bin/*.apk
         if: always()
+ 
